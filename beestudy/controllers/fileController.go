@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	ws "github.com/fidelfly/flygo/webservice"
+	ws "github.com/fidelfly/gostudy/flygo/webservice"
 	"mime/multipart"
 	"github.com/fidelfly/gostudy/beestudy/models/objects"
 	"io/ioutil"
@@ -10,7 +10,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"archive/zip"
-	"github.com/fidelfly/flygo/utils/props"
+	"github.com/fidelfly/gostudy/flygo/utils/props"
 	"errors"
 	"strings"
 	"github.com/astaxie/beego/orm"

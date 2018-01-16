@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	ws "github.com/fidelfly/flygo/webservice"
-	"github.com/fidelfly/flygo/auth/jwtTool"
+	ws "github.com/fidelfly/gostudy/flygo/webservice"
+	"github.com/fidelfly/gostudy/flygo/auth/jwtTool"
 	"github.com/fidelfly/gostudy/beestudy/models/objects"
 	"time"
 	"net/http"

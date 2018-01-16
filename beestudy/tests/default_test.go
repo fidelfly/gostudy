@@ -6,7 +6,7 @@ import (
 	"testing"
 	"runtime"
 	"path/filepath"
-	_ "study.fidelfly.com/beestudy/routers"
+	_ "github.com/fidelfly/gostudy/beestudy/routers"
 
 	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"
