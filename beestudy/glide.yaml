@@ -1,0 +1,18 @@
+package: github.com/fidelfly/gostudy/beestudy
+import:
+- package: github.com/astaxie/beego
+  subpackages:
+  - context
+  - context/param
+  - orm
+- package: github.com/fidelfly/flygo
+  subpackages:
+  - auth/jwtTool
+  - utils/props
+  - webservice
+- package: github.com/go-sql-driver/mysql
+testImport:
+- package: github.com/smartystreets/goconvey
+  subpackages:
+  - convey
+- package: study.fidelfly.com/beestudy/routers
