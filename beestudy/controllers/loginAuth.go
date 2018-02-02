@@ -43,6 +43,41 @@ func (this *LoginAuth) Logout() {
 	wr.ResponseOK(nil)
 }
 
+func validateUser(user string, pwd string) bool {
+	if beego.AppConfig.String("beestudy.user") != user || beego.AppConfig.String("beestudy.password") != pwd {
+		return false
+	}
+	return true
+}
+
+func (this *LoginAuth) getClientInfo() map[string]string {
+	clientInfo := make(map[string]string)
+
+	req := this.Ctx.Request
+	clientInfo["ip"] = resolveClientIP(req)
+
+	clientInfo["userAgent"] = req.Header.Get("user-agent")
+
+	return clientInfo
+}
+
+func resolveClientIP(req *http.Request) string {
+	clientIp := req.Header.Get("x-forwarded-for")
+
+	if len(clientIp) == 0 || "unknown" == clientIp || "0.0.0.0" == clientIp {
+		clientIp = req.Header.Get("Proxy-Client-IP")
+	}
+	if len(clientIp) == 0 || "unknown" == clientIp || "0.0.0.0" == clientIp {
+		clientIp = req.Header.Get("WL-Proxy-Client-IP")
+	}
+
+	if len(clientIp) == 0 {
+		return req.RemoteAddr
+	}
+
+	return clientIp
+}
+
 // @router /auth/token [post]
 func (this *LoginAuth) Login() {
 	user := this.Ctx.Input.Param("user")
@@ -107,41 +142,6 @@ func (this *LoginAuth) Login() {
 		"token":   authToken.Token,
 		"tokenId": authToken.Id,
 	})
-}
-
-func validateUser(user string, pwd string) bool {
-	if beego.AppConfig.String("beestudy.user") != user || beego.AppConfig.String("beestudy.password") != pwd {
-		return false
-	}
-	return true
-}
-
-func (this *LoginAuth) getClientInfo() map[string]string {
-	clientInfo := make(map[string]string)
-
-	req := this.Ctx.Request
-	clientInfo["ip"] = resolveClientIP(req)
-
-	clientInfo["userAgent"] = req.Header.Get("user-agent")
-
-	return clientInfo
-}
-
-func resolveClientIP(req *http.Request) string {
-	clientIp := req.Header.Get("x-forwarded-for")
-
-	if len(clientIp) == 0 || "unknown" == clientIp || "0.0.0.0" == clientIp {
-		clientIp = req.Header.Get("Proxy-Client-IP")
-	}
-	if len(clientIp) == 0 || "unknown" == clientIp || "0.0.0.0" == clientIp {
-		clientIp = req.Header.Get("WL-Proxy-Client-IP")
-	}
-
-	if len(clientIp) == 0 {
-		return req.RemoteAddr
-	}
-
-	return clientIp
 }
 
 func refreshToken(authToken *objects.JwtAuthToken) *objects.JwtAuthToken {
