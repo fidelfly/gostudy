@@ -6,5 +6,10 @@ func main() {
 	//basic.RWTest.RunBufferReadTest()
 	//basic.RunMapTest()
 	//basic.RunTimeFormatTest()
-	basic.RunTagTest()
+	//basic.RunTagTest()
+	//basic.RunSliceTest()
+	//basic.RunReflectTest()
+	//basic.RunVersionTest()
+	//basic.RunFileTest()
+	basic.RunCmdTest()
 }
