@@ -11,5 +11,7 @@ func main() {
 	//basic.RunReflectTest()
 	//basic.RunVersionTest()
 	//basic.RunFileTest()
-	basic.RunCmdTest()
+	//basic.RunCmdTest()
+	//basic.RunArgsTest()
+	basic.RunPathRegexTest()
 }
