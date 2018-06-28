@@ -15,5 +15,6 @@ func RunPathRegexTest() {
 		path = pgex.ReplaceAllString(path, string(os.PathSeparator))
 		//path = pgex.ReplaceAllString(path, "\\")
 	}
+	//test
 	fmt.Println(path)
 }
